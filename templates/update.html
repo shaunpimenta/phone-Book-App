@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="post" action="{{url_for('updatecontact')}}">
+    <p>What would you like to update</p>
+    <div name="test" id="group">
+    </div>
+    <p id="output"></p>
+    
+    </form>
+    <script>
+        const sizes = ['First Name', 'Last Name', 'Mobile Number'];
+
+        // generate the radio groups        
+        const group = document.querySelector("#group");
+        group.innerHTML = sizes.map((size) => `<div>
+                <input type="radio" name="size" value="${size}" id="${size}">
+                 <label for="${size}">${size}</label>
+            </div>`).join(' ');
+        
+        // add an event listener for the change event
+        const radioButtons = document.querySelectorAll('input[name="size"]');
+        for(const radioButton of radioButtons){
+            radioButton.addEventListener('change', showSelected);
+        }        
+        
+        function showSelected(e) {
+            console.log(e);
+            if (this.checked) {
+                document.querySelector('#output').innerHTML = `Please enter new ${this.value} <input type = "text" name="name1">
+                <input class="btn" type="submit" value="submit"  >`;
+                console.log(this.value)
+            }
+        }
+    //     function uptdata(name)
+    // {
+    //     // const name = document.getElementById(id).innerText
+    //     console.log(1)
+    //     console.log(name)
+    //     // print
+
+    //     $.ajax({
+    //         url: '{{ url_for("updatecontact") }}',
+    //         type: 'POST',
+    //         data: {
+    //             type: name
+    //         },
+    //         success: function (response) {
+    //         },
+    //         error: function (response) {
+    //         }
+    //     });
+
+    // };
+    </script>
+    <!-- <form method="post" action="{{url_for('updatecontact')}}">
+        <p>What would you like to update</p>
+        <input type="radio" id="fname" name="data" value="fname" checked>
+        <label for="child">17 years or younger</label><br>
+        <input type="radio" id="lname" name="data" value="lname">
+        <label for="adult">18 - 64 years</label><br>
+        <input type="radio" id="mobile" name="data" value="mobile">
+        <label for="senior">65 years or older</label>
+        </form> -->
+</body>
+</html>
