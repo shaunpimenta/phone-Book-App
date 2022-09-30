@@ -1,11 +1,18 @@
 import sqlite3
 import sys
 import os
+import pandas as pd
+import numpy as np
+import cv2 as cv
 from flask import Flask, render_template, request, redirect, url_for
 from pathlib import Path
 app = Flask(__name__)
 temp = None
 dict = {'First Name': 'fname', 'Last Name': 'lname', 'Mobile Number': 'mobile'}
+
+def createcounter(count):
+    count+=1
+    return count
 
 def createdatabase():
     try:
